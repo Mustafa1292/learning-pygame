@@ -19,7 +19,10 @@ y = 50
 width = 40
 height = 50
 vel = 5 #velocity
+screenwidth = 500
 
+isjump = True
+jumpcount = 10
 #4 main loop where pygame checks for mouse and keyboard events
 
 running = True
@@ -33,19 +36,22 @@ while running:
         #6 what if a key is held down
     keys = pygame.key.get_pressed() #coordinates change with the arrow keys
         
-    if keys[pygame.K_LEFT]:
+    if keys[pygame.K_LEFT] and x > vel:
         x -= vel
 
-    if keys[pygame.K_RIGHT]:
+    if keys[pygame.K_RIGHT] and x < screenwidth - width - vel:
         x += vel
 
-    if keys[pygame.K_UP]:
+    if keys[pygame.K_UP] and y > vel:
         y -= vel
             
-    if keys[pygame.K_DOWN]:
+    if keys[pygame.K_DOWN] and y < screenwidth - height - vel:
         y += vel
-    if keys[pygame.K_SPACE]:
-        win.fill((0,0,0))
+
+    
+
+
+    win.fill((0,0,0))
         
     pygame.draw.rect(win, (255, 0, 0), (x, y, width, height))#5 drawing shapes 1st the surface , 2nd the color (RGB), X Y coordinates, height and width
     pygame.display.update();
